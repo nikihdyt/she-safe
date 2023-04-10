@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">She Safe</string>
+    <string name="high_risk_danger_mode">Mode Proteksi Penuh</string>
+    <string name="moderate_risk_danger_mode">Mode Antisipasi</string>
+</resources>
