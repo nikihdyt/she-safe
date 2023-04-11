@@ -3,4 +3,28 @@
     <string name="app_name">She Safe</string>
     <string name="high_risk_danger_mode">Mode Proteksi Penuh</string>
     <string name="moderate_risk_danger_mode">Mode Antisipasi</string>
+    <string name="send">Kirim</string>
+    <string name="action_language">Bahasa</string>
+
+    <!--    String for Main Activity    -->
+    <string name="send_emergency_messages">Pesan Darurat Terkirim</string>
+    <string name="call_emergency_number">Hubungi 110 (polisi)</string>
+    <string name="are_you_sure_you_want_to_turn_on_full_protection_mode">Apakah Anda yakin ingin mengaktifkan Mode Proteksi Penuh?</string>
+    <string name="you_sure_you_want_to_turn_off_full_protection_mode">Apakah Anda yakin ingin menonaktifkan Mode Proteksi Penuh?</string>
+    <string name="in_danger_sms_message">Tolong bantu saya, saya dalam bahaya! Lokasi saya: </string>
+    <string name="sms_sent_to">SMS berhasil terkirim ke </string>
+    <string name="current_location">Lokasi Saat Ini</string>
+
+<!--    Full protection mode    -->
+    <string name="by_turning_full_protection_mode">Dengan mengaktifkan Mode Proteksi Penuh:</string>
+    <string name="def1_full_protection_mode">Silakan aktifkan layanan lokasi Anda dan izinkan SheSafe mengakses lokasi Anda</string>
+    <string name="def2_full_protection_mode">Kami akan secara otomatis mengirimkan SMS darurat ke kontak darurat Anda</string>
+    <string name="def3_full_protection_mode">Kami akan memberikan notifikasi berisi shortcut untuk menghubungi polisi atau nomor darurat Anda</string>
+    <string name="def4_full_protection_mode">Tolong pastikan Anda selalu membawa ponsel Anda serta bawa alat perlindungan diri khusus Anda</string>
+
+<!--    strings for contacts feature    -->
+    <string name="emergency_contacts">Kontak Darurat</string>
+    <string name="add_your_trusted_people_number">Tambahkan nomor orang-orang yang akan Anda andalkan ketika terjadi risiko bahaya</string>
+    <string name="they_will_be_notified">SheSafe akan mengirimkan pesan darurat ke mereka ketika Anda terdeteksi dalam bahaya.</string>
+    <string name="add_contact">Tambah Kontak</string>
 </resources>

@@ -21,6 +21,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity{
 //        START INITIALIZE UI ELEMENTS
         btnSendMsg = (ImageButton) findViewById(R.id.btn_messages);
         sBtnFullProtectionMode = (SwitchMaterial) findViewById(R.id.switch_high_risk_danger_mode);
+//        END INITIALIZE UI ELEMENTS
 
 //        START HANDLE UI ELEMENTS
         btnSendMsg.setOnClickListener(new View.OnClickListener() {
@@ -66,17 +68,28 @@ public class MainActivity extends AppCompatActivity{
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     View view = getLayoutInflater().inflate(R.layout.dialog_turn_on_full_protection_mode, null);
-                    showAlertDialog("Are you sure you want to turn on Full Protection Mode?", view);
-                    fullProtectionMode(MainActivity.this);
-
+                    showAlertDialog(
+                            getResources().getString(R.string.are_you_sure_you_want_to_turn_on_full_protection_mode),
+                            view );
+                    startFullProtectionMode();
                 } else {
-                    showAlertDialog("You sure to turn off Full Ptotection Mode?", null);
+                    showAlertDialog(
+                            getResources().getString(R.string.you_sure_you_want_to_turn_off_full_protection_mode),
+                            null);
+                    stopFullProtectionMode();
                 }
             }
         });
+//        END HANDLE UI ELEMENTS
 
-//        ----------------- START HANDLE SENSOR SHAKE -----------------
+    }
 
+    /** Starts the full protection mode of the app when called.
+     It uses the ShakeDetector library to detect when the phone is shaken.
+     When the phone is shaken, it sends an SMS message to a pre-defined phone number with the user's location.
+     If the app doesn't have permission to send SMS messages, it requests the permission.
+     */
+    private void startFullProtectionMode() {
         ShakeDetector.create(this, new ShakeDetector.OnShakeListener() {
             @Override
             public void OnShake() {
@@ -89,22 +102,31 @@ public class MainActivity extends AppCompatActivity{
                     }
                 };
                 String phoneNumber = "1234567890";
-                String message = "Please help me, I'm in danger! My location is: " + latitude + ", " + longitude ;
-                if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.SEND_SMS)
-                        != PackageManager.PERMISSION_GRANTED) {
+                String message =
+                        getResources().getString(R.string.in_danger_sms_message)
+                                + latitude + ", " + longitude;
+                if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
                     // Permission is not granted, request the permission
-                    ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{Manifest.permission.SEND_SMS},
-                            1);
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 1);
                 } else {
                     // Permission is granted, send the SMS message
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(phoneNumber, null, message, null, null);
-                    Toast.makeText(MainActivity.this, "SMS sent to " + phoneNumber, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,
+                            getResources().getString(R.string.sms_sent_to) + phoneNumber,
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
-//        ----------------- END HANDLE SENSOR SHAKE -----------------
+
+        if (isFullProtectionModeOn) {
+            ShakeDetector.start();
+        }
+    }
+
+    private void stopFullProtectionMode() {
+        ShakeDetector.stop();
+        ShakeDetector.destroy();
     }
 
     @Override
@@ -119,6 +141,10 @@ public class MainActivity extends AppCompatActivity{
         switch (item.getItemId()) {
             case R.id.menu_contacts:
                 launchMenuOption("contactsFragment");
+                return true;
+            case R.id.action_language:
+                Intent languageIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(languageIntent);
                 return true;
         }
 
@@ -137,6 +163,8 @@ public class MainActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
+    /** Will be shown after user click send message button
+     * */
     private void showSendMessageDialog() {
         SendMessageDialogFragment sendMessageDialogFragment = new SendMessageDialogFragment();
         sendMessageDialogFragment.show(getSupportFragmentManager(), "Send Emergency Message Dialog");
@@ -172,32 +200,5 @@ public class MainActivity extends AppCompatActivity{
         dialog.show();
     }
 
-    private boolean fullProtectionMode(Context context) {
-        return true;
-    }
 
-
-//    ----------------- START HANDLE SHAKE DETECTOR SENSOR -----------------
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (isFullProtectionModeOn) {
-            ShakeDetector.start();
-        }
-        ShakeDetector.start();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        ShakeDetector.stop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ShakeDetector.destroy();
-    }
-
-//    ----------------- END HANDLE SHARE DETECTOR SENSOR -----------------
 }

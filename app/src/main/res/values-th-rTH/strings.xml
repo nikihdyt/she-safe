@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">She Safe</string>
+    <string name="high_risk_danger_mode">โหมดการป้องกันเต็มรูปแบบ</string>
+    <string name="moderate_risk_danger_mode">โหมดการตัดสินใจล่วงหน้า</string>
+    <string name="send">ส่ง</string>
+    <string name="action_language">เปลี่ยนภาษา</string>
+
+<!--    Strings for Main Activty    -->
+    <string name="send_emergency_messages">ข้อความฉุกเฉินถูกส่ง</string>
+    <string name="call_emergency_number">โทร 191</string>
+    <string name="are_you_sure_you_want_to_turn_on_full_protection_mode">คุณแน่ใจหรือว่าต้องการเปิดโหมดการป้องกันเต็มรูปแบบ?</string>
+    <string name="you_sure_you_want_to_turn_off_full_protection_mode">คุณแน่ใจหรือว่าต้องการปิดโหมดการป้องกันเต็มรูปแบบ?</string>
+    <string name="in_danger_sms_message">กรุณาช่วยฉัน, ฉันอยู่ในความเสี่ยง! ตำแหน่งของฉัน: </string>
+    <string name="sms_sent_to">ข้อความ SMS ถูกส่งไปยัง </string>
+    <string name="current_location">ตำแหน่งปัจจุบัน</string>
+
+<!--    Full protection mode    -->
+    <string name="by_turning_full_protection_mode">โดยการเปิดโหมดการป้องกันเต็มรูปแบบ:</string>
+    <string name="def1_full_protection_mode">โปรดเปิดบริการตำแหน่งที่ตั้งของคุณและอนุญาตให้ SheSafe เข้าถึงตำแหน่งที่ตั้งของคุณ</string>
+    <string name="def2_full_protection_mode">เราจะส่งข้อความ SMS ฉุกเฉินไปยังผู้ติดต่อฉุกเฉินของคุณโดยอัตโนมัติ</string>
+    <string name="def3_full_protection_mode">เราจะเรียกหมายเลขฉุกเฉินของคุณโดยอัตโนมัติ</string>
+    <string name="def4_full_protection_mode">เราจะแชร์ตำแหน่งที่ตั้งของคุณกับผู้ติดต่อฉุกเฉินของคุณ</string>
+
+<!--    strings for contacts feature    -->
+    <string name="emergency_contacts">ผู้ติดต่อฉุกเฉิน</string>
+    <string name="add_your_trusted_people_number">เพิ่มหมายเลขของคนที่คุณเชื่อถือ</string>
+    <string name="they_will_be_notified">พวกเขาจะได้รับการแจ้งเตือนเมื่อคุณอยู่ในความเสี่ยง</string>
+    <string name="add_contact">เพิ่มผู้ติดต่อ</string>
+</resources>

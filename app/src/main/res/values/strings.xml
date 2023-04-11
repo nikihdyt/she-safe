@@ -2,6 +2,28 @@
     <string name="app_name">She Safe</string>
     <string name="high_risk_danger_mode">Full Protection Mode</string>
     <string name="moderate_risk_danger_mode">Anticipatory Mode</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send">Send</string>
+    <string name="action_language">Language</string>
+
+<!--    strings for Activity Main    -->
+    <string name="send_emergency_messages">Send Emergency Messages</string>
+    <string name="call_emergency_number">Call 911</string>
+    <string name="are_you_sure_you_want_to_turn_on_full_protection_mode">Are you sure you want to turn on Full Protection Mode?</string>
+    <string name="you_sure_you_want_to_turn_off_full_protection_mode">Are you sure you want to turn off Full Protection Mode?</string>
+    <string name="in_danger_sms_message">Please help me, I\'m in danger! My location is: </string>
+    <string name="sms_sent_to">SMS successfully sent to </string>
+    <string name="current_location">Current Location</string>
+
+<!--    Full protection mode    -->
+    <string name="by_turning_full_protection_mode">By turning Full Protection Mode on:</string>
+    <string name="def1_full_protection_mode">Please turn on your location service and allow SheSafe to access your location</string>
+    <string name="def2_full_protection_mode">SheSafe will automatically send a message to your emergency contacts when we detect a danger situation (scream, phone not moving, and too many phone shake)</string>
+    <string name="def3_full_protection_mode">SheSafe will give you a notification containing shortcut to call the police or your emergency contacts</string>
+    <string name="def4_full_protection_mode">Please make sure you have your phone with you at all times and bring your personal self-defense items</string>
+
+<!--    strings for contacts feature    -->
+    <string name="emergency_contacts">Emergency Contacts</string>
+    <string name="add_your_trusted_people_number">Add your trusted people\'s number</string>
+    <string name="they_will_be_notified">SheSafe will then send messages to them when you are detected to be in danger.</string>
+    <string name="add_contact">Add Contact</string>
 </resources>

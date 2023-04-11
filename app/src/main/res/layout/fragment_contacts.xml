@@ -11,7 +11,7 @@
         android:id="@+id/tv_contacts_headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Emergency Contacts"
+        android:text="@string/emergency_contacts"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -19,7 +19,7 @@
         android:id="@+id/tv_contacts_subheadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add your trusted people's number"
+        android:text="@string/add_your_trusted_people_number"
         app:layout_constraintTop_toBottomOf="@id/tv_contacts_headline"
         app:layout_constraintLeft_toLeftOf="@id/tv_contacts_headline"/>
 
@@ -27,7 +27,7 @@
         android:id="@+id/tv_contacts_subheadline_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The app will then send messages to them when you are detected to be in danger."
+        android:text="@string/they_will_be_notified"
         app:layout_constraintTop_toBottomOf="@id/tv_contacts_subheadline"
         app:layout_constraintLeft_toLeftOf="@id/tv_contacts_subheadline"/>
 
@@ -45,6 +45,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Add Contact"/>
+        android:text="@string/add_contact"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

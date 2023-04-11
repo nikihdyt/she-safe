@@ -69,7 +69,7 @@ public class SendMessageDialogFragment extends DialogFragment {
                 currentLocation = new LatLng(-7.7730428, 110.3739477);
                 mMap.addMarker(new MarkerOptions()
                         .position(currentLocation)
-                        .title("Current Location"));
+                        .title(getResources().getString(R.string.current_location)));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 20));
             }
         });
@@ -78,7 +78,9 @@ public class SendMessageDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 String phoneNumber = "1234567890";
-                String message = "Please help me, I'm in danger! My location is: " + + currentLocation.latitude + ", " + currentLocation.longitude ;
+                String message =
+                        getResources().getString(R.string.in_danger_sms_message)
+                                + currentLocation.latitude + ", " + currentLocation.longitude ;
 
                 if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.SEND_SMS)
                         != PackageManager.PERMISSION_GRANTED) {
@@ -90,7 +92,9 @@ public class SendMessageDialogFragment extends DialogFragment {
                     // Permission is granted, send the SMS message
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(phoneNumber, null, message, null, null);
-                    Toast.makeText(getActivity(), "SMS sent to " + phoneNumber, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),
+                            getResources().getString(R.string.sms_sent_to)
+                                    + phoneNumber, Toast.LENGTH_SHORT).show();
                 }
             }
         });

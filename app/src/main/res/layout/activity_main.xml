@@ -54,7 +54,7 @@
         android:id="@+id/tv_messages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sent Emergency Messages"
+        android:text="@string/send_emergency_messages"
         app:layout_constraintLeft_toLeftOf="@id/btn_messages"
         app:layout_constraintRight_toRightOf="@id/btn_messages"
         app:layout_constraintTop_toBottomOf="@id/btn_messages" />
@@ -73,7 +73,7 @@
         android:id="@+id/tv_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Call 911"
+        android:text="@string/call_emergency_number"
         app:layout_constraintLeft_toLeftOf="@id/btn_call"
         app:layout_constraintRight_toRightOf="@id/btn_call"
         app:layout_constraintTop_toBottomOf="@id/btn_call" />
