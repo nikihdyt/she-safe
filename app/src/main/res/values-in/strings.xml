@@ -4,7 +4,9 @@
     <string name="high_risk_danger_mode">Mode Proteksi Penuh</string>
     <string name="moderate_risk_danger_mode">Mode Antisipasi</string>
     <string name="send">Kirim</string>
-    <string name="action_language">Bahasa</string>
+    <string name="action_language">Bahasa</string>\
+    <string name="send_a_message">Kirim Pesan</string>
+    <string name="we_are_here_to_help_you">Kami disini siap membantu Anda</string>
 
     <!--    String for Main Activity    -->
     <string name="send_emergency_messages">Pesan Darurat Terkirim</string>

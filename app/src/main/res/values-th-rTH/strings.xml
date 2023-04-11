@@ -5,6 +5,8 @@
     <string name="moderate_risk_danger_mode">โหมดการตัดสินใจล่วงหน้า</string>
     <string name="send">ส่ง</string>
     <string name="action_language">เปลี่ยนภาษา</string>
+    <string name="send_a_message">ส่งข้อความ</string>
+    <string name="we_are_here_to_help_you">เราอยู่ที่นี่เพื่อช่วยคุณ</string>
 
 <!--    Strings for Main Activty    -->
     <string name="send_emergency_messages">ข้อความฉุกเฉินถูกส่ง</string>
