@@ -21,6 +21,7 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.telephony.SmsManager;
@@ -39,6 +40,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
     private ImageButton btnSendMsg;
+    private ImageButton btnCall;
     private SwitchMaterial sBtnFullProtectionMode;
     private boolean isFullProtectionModeOn = false;
 
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 //        START INITIALIZE UI ELEMENTS
         btnSendMsg = (ImageButton) findViewById(R.id.btn_messages);
+        btnCall = (ImageButton) findViewById(R.id.btn_call);
         sBtnFullProtectionMode = (SwitchMaterial) findViewById(R.id.switch_high_risk_danger_mode);
         screen = (CardView) findViewById(R.id.screen);
 //        END INITIALIZE UI ELEMENTS
@@ -72,7 +75,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 showSendMessageDialog();
             }
         });
-
+        btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callPolice(getResources().getString(R.string.police_number));
+            }
+        });
         sBtnFullProtectionMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -152,6 +160,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private void stopFullProtectionMode() {
         ShakeDetector.stop();
         ShakeDetector.destroy();
+    }
+
+    private void callPolice(String phoneNumber) {
+        // Format the phone number for dialing.
+        String formattedNumber = String.format("tel: %s", phoneNumber);
+        // Create the intent.
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        // Set the formatted phone number as data for the intent.
+        dialIntent.setData(Uri.parse(formattedNumber));
+        // If package resolves to an app, send intent.
+        if (dialIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(dialIntent);
+        } else {
+            Log.e(MainActivity.class.getSimpleName(), "Can't resolve app for ACTION_DIAL Intent.");
+        }
     }
 
     @Override

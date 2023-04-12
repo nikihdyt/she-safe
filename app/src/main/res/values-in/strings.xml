@@ -11,6 +11,7 @@
     <!--    String for Main Activity    -->
     <string name="send_emergency_messages">Pesan Darurat Terkirim</string>
     <string name="call_emergency_number">Hubungi 110 (polisi)</string>
+    <string name="police_number">110</string>
     <string name="are_you_sure_you_want_to_turn_on_full_protection_mode">Apakah Anda yakin ingin mengaktifkan Mode Proteksi Penuh?</string>
     <string name="you_sure_you_want_to_turn_off_full_protection_mode">Apakah Anda yakin ingin menonaktifkan Mode Proteksi Penuh?</string>
     <string name="in_danger_sms_message">Tolong bantu saya, saya dalam bahaya! Lokasi saya: </string>

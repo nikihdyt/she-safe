@@ -11,6 +11,7 @@
 <!--    Strings for Main Activty    -->
     <string name="send_emergency_messages">ข้อความฉุกเฉินถูกส่ง</string>
     <string name="call_emergency_number">โทร 191</string>
+    <string name="police_number">191</string>
     <string name="are_you_sure_you_want_to_turn_on_full_protection_mode">คุณแน่ใจหรือว่าต้องการเปิดโหมดการป้องกันเต็มรูปแบบ?</string>
     <string name="you_sure_you_want_to_turn_off_full_protection_mode">คุณแน่ใจหรือว่าต้องการปิดโหมดการป้องกันเต็มรูปแบบ?</string>
     <string name="in_danger_sms_message">กรุณาช่วยฉัน, ฉันอยู่ในความเสี่ยง! ตำแหน่งของฉัน: </string>
