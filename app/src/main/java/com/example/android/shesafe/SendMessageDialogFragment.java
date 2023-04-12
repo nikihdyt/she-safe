@@ -1,8 +1,15 @@
 package com.example.android.shesafe;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +20,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,14 +40,25 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
 
-public class SendMessageDialogFragment extends DialogFragment {
+public class SendMessageDialogFragment extends DialogFragment{
 
     private MapView mMapView;
     private GoogleMap mMap;
     private Button btnSendMsg;
     private LatLng currentLocation;
 
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private String provider;
+    private double latitude;
+    private double longitude;
+
+    private String contactName;
+    private String contactNumber;
+
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,10 +81,10 @@ public class SendMessageDialogFragment extends DialogFragment {
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
+                Log.d("MainActivity", "onMapReady: OK");
                 mMap = googleMap;
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-                // Add a marker at the user's current location
                 currentLocation = new LatLng(-7.7730428, 110.3739477);
                 mMap.addMarker(new MarkerOptions()
                         .position(currentLocation)
@@ -74,28 +93,42 @@ public class SendMessageDialogFragment extends DialogFragment {
             }
         });
 
+//        START HANDLE CONTACT DATA
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
+        contactName = sharedPreferences.getString("contactName", "");
+        contactNumber = sharedPreferences.getString("contactNumber", "");
+        Log.d("MainActivity", "contactName: " + contactName + ", contactNumber: " + contactNumber);
+//        END HANDLE CONTACT DATA
+
         btnSendMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String phoneNumber = "1234567890";
-                String message =
-                        getResources().getString(R.string.in_danger_sms_message)
-                                + currentLocation.latitude + ", " + currentLocation.longitude ;
-
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.SEND_SMS)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    // Permission is not granted, request the permission
-                    ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{Manifest.permission.SEND_SMS},
-                            1);
+                if (contactNumber != "") {
+                    Log.d("MainActivity", "MASUK ONCLICK" + "contactName: " + contactName + ", contactNumber: " + contactNumber);
+                    String message =
+                            getResources().getString(R.string.in_danger_sms_message)
+                                    + currentLocation.latitude + ", " + currentLocation.longitude ;
+                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.SEND_SMS)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        // Permission is not granted, request the permission
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.SEND_SMS},
+                                1);
+                    } else {
+                        // Permission is granted, send the SMS message
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(contactNumber, null, message, null, null);
+                        Toast.makeText(getActivity(),
+                                getResources().getString(R.string.sms_sent_to)
+                                        + " " + contactName, Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    // Permission is granted, send the SMS message
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNumber, null, message, null, null);
-                    Toast.makeText(getActivity(),
-                            getResources().getString(R.string.sms_sent_to)
-                                    + phoneNumber, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),
+                            getResources().getString(R.string.no_contact_selected),
+                            Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 
@@ -103,17 +136,6 @@ public class SendMessageDialogFragment extends DialogFragment {
     }
 
     // Handle the result of the permission request
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 1) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, send the SMS message
-                Toast.makeText(getActivity(), "PERMISSION GRANTED", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getActivity(), "Permission denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+
 
 }

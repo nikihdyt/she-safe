@@ -29,4 +29,7 @@
     <string name="add_your_trusted_people_number">Tambahkan nomor orang-orang yang akan Anda andalkan ketika terjadi risiko bahaya</string>
     <string name="they_will_be_notified">SheSafe akan mengirimkan pesan darurat ke mereka ketika Anda terdeteksi dalam bahaya.</string>
     <string name="add_contact">Tambah Kontak Baru</string>
+    <string name="no_contact_selected">Silakan definisikan kontak darurat Anda terlebih dahulu.</string>
+
+    <string name="sensor_error">Tidak ada sensor</string>
 </resources>

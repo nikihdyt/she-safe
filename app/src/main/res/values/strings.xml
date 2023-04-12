@@ -28,7 +28,10 @@
     <string name="add_your_trusted_people_number">Add your trusted people\'s number</string>
     <string name="they_will_be_notified">SheSafe will then send messages to them when you are detected to be in danger.</string>
     <string name="add_contact">Add New Contact</string>
+    <string name="no_contact_selected">Please define your emergency contact first.</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+
+    <string name="sensor_error">No sensor</string>
 </resources>

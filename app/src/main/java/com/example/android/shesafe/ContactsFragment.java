@@ -1,6 +1,9 @@
 package com.example.android.shesafe;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -21,7 +24,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ContactsFragment extends Fragment {
@@ -46,12 +51,23 @@ public class ContactsFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
+        String list = sharedPreferences.getString("contactList", "");
+        if (!list.equals("")) {
+            Gson gson = new Gson();
+            String[][] contactList = gson.fromJson(list, String[][].class);
+            for (String[] contact : contactList) {
+                mContactList.add(contact);
+            }
+            mAdapter.notifyDataSetChanged();
+        }
+
         // Button handler for adding a contact
         ExtendedFloatingActionButton btnAddContact = (ExtendedFloatingActionButton) rootView.findViewById(R.id.btn_add_contact);
         btnAddContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addContact();
+                addContact(sharedPreferences);
             }
         });
 
@@ -63,7 +79,7 @@ public class ContactsFragment extends Fragment {
      * Show an AlertDialog with an EditText to enter the contact's name and phone number.
      * When the user clicks the Send button, add the contact to the contact list.
      */
-    private void addContact() {
+    private void addContact(SharedPreferences sharedPreferences) {
         int contactListSize = mContactList.size();
 
         // Create an AlertDialog Builder
@@ -96,6 +112,13 @@ public class ContactsFragment extends Fragment {
 
                 String[] addedContact = {addedContactName, addedContactNumber};
                 mContactList.addLast(addedContact);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("contactName", addedContactName);
+                editor.putString("contactNumber", addedContactNumber);
+                editor.putString("contactList", new Gson().toJson(mContactList));
+                editor.apply();
+
                 Log.d(ContactsFragment.class.getSimpleName(), "contactList TERBARU setelah add new contact" + mContactList);
 
                 // Notify the adapter, that the data has changed so it can

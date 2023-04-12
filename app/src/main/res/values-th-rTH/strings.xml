@@ -29,4 +29,7 @@
     <string name="add_your_trusted_people_number">เพิ่มหมายเลขของคนที่คุณเชื่อถือ</string>
     <string name="they_will_be_notified">พวกเขาจะได้รับการแจ้งเตือนเมื่อคุณอยู่ในความเสี่ยง</string>
     <string name="add_contact">เพิ่มผู้ติดต่อ</string>
+    <string name="no_contact_selected">ไม่มีผู้ติดต่อที่เลือก</string>
+
+    <string name="sensor_error">เกิดข้อผิดพลาดของเซ็นเซอร์</string>
 </resources>

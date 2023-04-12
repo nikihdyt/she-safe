@@ -11,6 +11,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
@@ -30,16 +31,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.tbouron.shakedetector.library.ShakeDetector;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity{
 
     private ImageButton btnSendMsg;
     private SwitchMaterial sBtnFullProtectionMode;
     private boolean isFullProtectionModeOn = false;
+
+    private String contactName;
+    private String contactNumber;
 
     private LocationManager locationManager;
     private LocationListener locationListener;
@@ -82,6 +88,11 @@ public class MainActivity extends AppCompatActivity{
         });
 //        END HANDLE UI ELEMENTS
 
+        SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
+        contactName = sharedPreferences.getString("contactName", "");
+        contactNumber = sharedPreferences.getString("contactNumber", "");
+        Log.d("MainActivity", "contactName: " + contactName + ", contactNumber: " + contactNumber);
+//        END HANDLE CONTACT DATA
     }
 
     /** Starts the full protection mode of the app when called.
@@ -101,19 +112,24 @@ public class MainActivity extends AppCompatActivity{
                         longitude = location.getLongitude();
                     }
                 };
-                String phoneNumber = "1234567890";
-                String message =
-                        getResources().getString(R.string.in_danger_sms_message)
-                                + latitude + ", " + longitude;
-                if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-                    // Permission is not granted, request the permission
-                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 1);
+                if (contactNumber != null) {
+                    String message =
+                            getResources().getString(R.string.in_danger_sms_message)
+                                    + latitude + ", " + longitude;
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                        // Permission is not granted, request the permission
+                        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 1);
+                    } else {
+                        // Permission is granted, send the SMS message
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(contactNumber, null, message, null, null);
+                        Toast.makeText(MainActivity.this,
+                                getResources().getString(R.string.sms_sent_to) + contactName,
+                                Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    // Permission is granted, send the SMS message
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNumber, null, message, null, null);
                     Toast.makeText(MainActivity.this,
-                            getResources().getString(R.string.sms_sent_to) + phoneNumber,
+                            getResources().getString(R.string.no_contact_selected),
                             Toast.LENGTH_SHORT).show();
                 }
             }
