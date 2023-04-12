@@ -8,34 +8,30 @@
     tools:context=".ContactsFragment">
 
     <TextView
-        android:id="@+id/tv_contacts_headline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/emergency_contacts"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <TextView
         android:id="@+id/tv_contacts_subheadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/text_primary"
+        android:textSize="14dp"
         android:text="@string/add_your_trusted_people_number"
-        app:layout_constraintTop_toBottomOf="@id/tv_contacts_headline"
-        app:layout_constraintLeft_toLeftOf="@id/tv_contacts_headline"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/tv_contacts_subheadline_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/they_will_be_notified"
+        android:textColor="@color/text_primary"
+        android:textSize="14dp"
         app:layout_constraintTop_toBottomOf="@id/tv_contacts_subheadline"
         app:layout_constraintLeft_toLeftOf="@id/tv_contacts_subheadline"/>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_contact_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         app:layout_constraintTop_toBottomOf="@id/tv_contacts_subheadline_2"
         app:layout_constraintLeft_toLeftOf="@id/tv_contacts_subheadline"/>
 
@@ -43,6 +39,7 @@
         android:id="@+id/btn_add_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:text="@string/add_contact"/>

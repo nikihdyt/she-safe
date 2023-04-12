@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
+    android:background="@drawable/app_bg"
     tools:context=".MainActivity">
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switch_high_risk_danger_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:thumbTint="#6096B4"
         app:layout_constraintTop_toTopOf="@id/tv_high_risk_danger_mode"
         app:layout_constraintBottom_toBottomOf="@id/tv_high_risk_danger_mode"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -19,6 +21,9 @@
         android:id="@+id/tv_high_risk_danger_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/text_primary"
         android:text="@string/high_risk_danger_mode"
         app:layout_constraintStart_toEndOf="@id/switch_high_risk_danger_mode"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,6 +32,7 @@
         android:id="@+id/switch_moderate_risk_danger_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:thumbTint="#6096B4"
         app:layout_constraintTop_toTopOf="@id/tv_moderate_risk_danger_mode"
         app:layout_constraintBottom_toBottomOf="@id/tv_moderate_risk_danger_mode"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -35,19 +41,25 @@
         android:id="@+id/tv_moderate_risk_danger_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:textSize="16dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/text_primary"
         android:text="@string/moderate_risk_danger_mode"
         app:layout_constraintStart_toEndOf="@id/switch_high_risk_danger_mode"
         app:layout_constraintTop_toBottomOf="@id/tv_high_risk_danger_mode" />
 
     <ImageButton
         android:id="@+id/btn_messages"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:src="@drawable/messages"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_moderate_risk_danger_mode"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btn_call"/>
 
     <TextView
@@ -55,15 +67,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/send_emergency_messages"
+        android:textColor="@color/text_primary"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/btn_messages"
         app:layout_constraintRight_toRightOf="@id/btn_messages"
         app:layout_constraintTop_toBottomOf="@id/btn_messages" />
 
     <ImageButton
         android:id="@+id/btn_call"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:src="@drawable/phone"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_messages"
@@ -74,6 +91,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/call_emergency_number"
+        android:textColor="@color/text_primary"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/btn_call"
         app:layout_constraintRight_toRightOf="@id/btn_call"
         app:layout_constraintTop_toBottomOf="@id/btn_call" />
