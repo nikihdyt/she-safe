@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -29,20 +31,23 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.tbouron.shakedetector.library.ShakeDetector;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.gson.Gson;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
     private ImageButton btnSendMsg;
     private SwitchMaterial sBtnFullProtectionMode;
     private boolean isFullProtectionModeOn = false;
+    ConstraintLayout parentLayout;
 
     private String contactName;
     private String contactNumber;
@@ -52,6 +57,11 @@ public class MainActivity extends AppCompatActivity{
     private double latitude;
     private double longitude;
 
+    private SensorManager mSensorManager;
+    private Sensor mSensorLight;
+    private CardView screen;
+    private WindowManager.LayoutParams layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +70,7 @@ public class MainActivity extends AppCompatActivity{
 //        START INITIALIZE UI ELEMENTS
         btnSendMsg = (ImageButton) findViewById(R.id.btn_messages);
         sBtnFullProtectionMode = (SwitchMaterial) findViewById(R.id.switch_high_risk_danger_mode);
+        screen = (CardView) findViewById(R.id.screen);
 //        END INITIALIZE UI ELEMENTS
 
 //        START HANDLE UI ELEMENTS
@@ -88,6 +99,13 @@ public class MainActivity extends AppCompatActivity{
         });
 //        END HANDLE UI ELEMENTS
 
+//        START HANDLE SENSOR
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        layout = getWindow().getAttributes();
+//        END HANDLE SENSOR
+
+//        START HANDLE CONTACT DATA
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
         contactName = sharedPreferences.getString("contactName", "");
         contactNumber = sharedPreferences.getString("contactNumber", "");
@@ -146,10 +164,18 @@ public class MainActivity extends AppCompatActivity{
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_options, menu);
-        return true;
+    protected void onStart() {
+        super.onStart();
+        if (mSensorLight != null) {
+            mSensorManager.registerListener(this, mSensorLight,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mSensorManager.unregisterListener(this);
     }
 
     @Override
@@ -217,4 +243,25 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+//        float lightValue = sensorEvent.values[0];
+//        float brightnessValue = lightValue / mSensorLight.getMaximumRange();
+//        layout.screenBrightness = brightnessValue;
+//        getWindow().setAttributes(layout);
+
+        if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
+            float lightLevel = event.values[0];
+            float alpha = 1 - (lightLevel / 50000f);
+            alpha = Math.max(alpha, 0f);
+            alpha = Math.min(alpha, 0.8f);
+            screen.setAlpha(alpha);
+
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
 }
