@@ -24,7 +24,13 @@
     <string name="def3_full_protection_mode">เราจะเรียกหมายเลขฉุกเฉินของคุณโดยอัตโนมัติ</string>
     <string name="def4_full_protection_mode">เราจะแชร์ตำแหน่งที่ตั้งของคุณกับผู้ติดต่อฉุกเฉินของคุณ</string>
 
+    <!--    strings for about us feature    -->
+    <string name="about_us">เกี่ยวกับ SheSafe</string>
+    <string name="first_paragraph">SheSafe เป็นแอปพลิเคชันที่ช่วยให้คุณสามารถป้องกันตัวเองได้ในสถานการณ์ที่คุณอยู่ในความเสี่ยง</string>
+    <string name="second_paragraph">ภารกิจของเราคือการสร้างโลกที่ปลอดภัยยิ่งขึ้นสำหรับผู้หญิง โดยการจัดหาเครื่องมือที่เชื่อถือได้และใช้งานง่าย ซึ่งสามารถแจ้งเตือนคนที่คุณรักในกรณีฉุกเฉินได้อย่างรวดเร็ว เราเข้าใจดีว่าความปลอดภัยของผู้หญิงคือประเด็นสำคัญ และแอปของเราออกแบบมาเพื่อให้การสนับสนุนและการปกป้องที่จำเป็นเพื่อให้ผู้หญิงรู้สึกปลอดภัยและมั่นคง</string>
+
 <!--    strings for contacts feature    -->
+    <string name="contacts">ผู้ติดต่อ</string>
     <string name="emergency_contacts">ผู้ติดต่อฉุกเฉิน</string>
     <string name="add_your_trusted_people_number">เพิ่มหมายเลขของคนที่คุณเชื่อถือ</string>
     <string name="they_will_be_notified">พวกเขาจะได้รับการแจ้งเตือนเมื่อคุณอยู่ในความเสี่ยง</string>
@@ -32,4 +38,8 @@
     <string name="no_contact_selected">ไม่มีผู้ติดต่อที่เลือก</string>
 
     <string name="sensor_error">เกิดข้อผิดพลาดของเซ็นเซอร์</string>
+
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>

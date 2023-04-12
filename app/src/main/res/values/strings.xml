@@ -24,6 +24,7 @@
     <string name="def4_full_protection_mode">Please make sure you have your phone with you at all times and bring your personal self-defense items</string>
 
     <!--    strings for contacts feature    -->
+    <string name="contacts">Contacts</string>
     <string name="emergency_contacts">Emergency Contacts</string>
     <string name="add_your_trusted_people_number">Add your trusted people\'s number</string>
     <string name="they_will_be_notified">SheSafe will then send messages to them when you are detected to be in danger.</string>
@@ -33,5 +34,11 @@
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
 
+    <!--    strings for about us feature    -->
+    <string name="about_us">About She Safe</string>
+    <string name="first_paragraph">Welcome to She Safe! She Safe is designed to empower women with an essential tool for their safety. Our app is built with a unique feature that can detect danger and send out SOS messages to your defined contacts with just a few effort to get help.</string>
+    <string name="second_paragraph">Our mission is to create a safer world for women, by providing a reliable and easy-to-use tool that can quickly alert your loved ones in case of an emergency. We understand that women\'s safety is a crucial issue, and our app is designed to provide the necessary support and protection needed for women to feel safe and secure.</string>
+
     <string name="sensor_error">No sensor</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

@@ -24,7 +24,13 @@
     <string name="def3_full_protection_mode">Kami akan memberikan notifikasi berisi shortcut untuk menghubungi polisi atau nomor darurat Anda</string>
     <string name="def4_full_protection_mode">Tolong pastikan Anda selalu membawa ponsel Anda serta bawa alat perlindungan diri khusus Anda</string>
 
+    <!--    strings for about us feature    -->
+    <string name="about_us">Tentang She Safe</string>
+    <string name="first_paragraph">SheSafe adalah aplikasi yang dirancang untuk membantu Anda mengantisipasi bahaya dan mengurangi risiko kekerasan terhadap perempuan. She Safe akan memberikan Anda informasi tentang bahaya yang mungkin Anda hadapi dan memberikan solusi untuk mengatasinya. Selain itu, She Safe ini juga dapat mengirimkan pesan darurat ke kontak darurat Anda ketika Anda terdeteksi dalam bahaya.</string>
+    <string name="second_paragraph">Tim SheSafe memiliki misi untuk menciptakan dunia yang lebih aman bagi wanita, dengan menyediakan alat yang andal dan mudah digunakan yang dapat dengan cepat memberi tahu orang yang Anda cintai jika terjadi keadaan darurat. Kami memahami bahwa keselamatan wanita adalah masalah yang krusial, dan aplikasi kami dirancang untuk memberikan dukungan dan perlindungan yang diperlukan agar wanita merasa aman dan terjamin.</string>
+
 <!--    strings for contacts feature    -->
+    <string name="contacts">Kontak</string>
     <string name="emergency_contacts">Kontak Darurat</string>
     <string name="add_your_trusted_people_number">Tambahkan nomor orang-orang yang akan Anda andalkan ketika terjadi risiko bahaya</string>
     <string name="they_will_be_notified">SheSafe akan mengirimkan pesan darurat ke mereka ketika Anda terdeteksi dalam bahaya.</string>
@@ -32,4 +38,8 @@
     <string name="no_contact_selected">Silakan definisikan kontak darurat Anda terlebih dahulu.</string>
 
     <string name="sensor_error">Tidak ada sensor</string>
+
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>

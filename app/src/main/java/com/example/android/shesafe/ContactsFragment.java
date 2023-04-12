@@ -43,7 +43,7 @@ public class ContactsFragment extends Fragment {
 
         // Set AppBar title
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setTitle("Emergency Contacts");
+        actionBar.setTitle(getResources().getString(R.string.emergency_contacts));
 
         // Get the RecyclerView for contact list and set its adapter and layout manager
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_contact_list);

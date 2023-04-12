@@ -51,6 +51,9 @@ public class HostFragmentActivity extends AppCompatActivity implements SensorEve
             case "contactsFragment":
                 fragment = new ContactsFragment();
                 break;
+            case "aboutUsFragment":
+                fragment = new AboutUsFragment();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid fragment name: " + fragmentName);
         }

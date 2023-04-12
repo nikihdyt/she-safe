@@ -186,6 +186,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Intent languageIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
                 startActivity(languageIntent);
                 return true;
+            case R.id.menu_about_us:
+                launchMenuOption("aboutUsFragment");
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
