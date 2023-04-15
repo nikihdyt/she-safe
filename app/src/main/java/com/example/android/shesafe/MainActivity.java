@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private LocationManager locationManager;
     private LocationListener locationListener;
-    private double latitude;
-    private double longitude;
+    private double latitude = -7.7730428;
+    private double longitude = 110.3739477;
 
     private SensorManager mSensorManager;
     private Sensor mSensorLight;

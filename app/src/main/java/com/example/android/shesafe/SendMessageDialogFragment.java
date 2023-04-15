@@ -42,6 +42,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 
+import android.Manifest;
+
 public class SendMessageDialogFragment extends DialogFragment{
 
     private MapView mMapView;
@@ -65,6 +67,29 @@ public class SendMessageDialogFragment extends DialogFragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_send_message, container, false);
+
+        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // Permission already granted, proceed with location access
+        } else {
+            // Request location permission
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+        }
+
+        // If permission is granted, get the user's current location
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
+                        // Use location data
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
+                    }
+                }
+            });
+        }
 
         mMapView = rootView.findViewById(R.id.map_view);
         btnSendMsg = rootView.findViewById(R.id.btn_send_message);
